@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "structured-light"
+version = "0.1.0"
+description = ""
+authors = ["marcsgil <marcosgildeoliveira@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+numpy = "^1.23"
+scipy = "^1.9"
+multimethod = "^1.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
