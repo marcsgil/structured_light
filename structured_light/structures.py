@@ -65,7 +65,7 @@ def diagonal_hg(x, y, m: int, n: int, w0):
     return hg((x-y)/np.sqrt(2), (x+y)/np.sqrt(2), m, n, w0)
 
 
-def b(m, n, k):
+def b(m: int, n: int, k: int):
     """
     Calculate the value the coefficients b(m, n, k) that converts between Hermite-Gaussian and diagonal Hermite-Gaussian modes.
 
@@ -89,41 +89,6 @@ def b(m, n, k):
     min = np.maximum(0, k-m)
 
     return prefactor * np.sum([(-1)**j * binom(n, j) * binom(m, k-j) for j in range(min, max+1)])
-
-
-def fixed_order_basis(x, y, w0, order, basis='hg'):
-    """
-    Compute the fixed-order basis functions for a given set of coordinates.
-
-    Args:
-        x (array_like): x-coordinates of the points.
-        y (array_like): y-coordinates of the points.
-        w0 (float): Waist parameter.
-        order (int): Order of the basis functions.
-        basis (str, optional): Type of basis functions to compute. 
-            Possible values are 'lg', 'hg', 'diagonal_hg'. 
-            Defaults to 'hg'.
-
-    Returns:
-        (array_like): An array of basis functions.
-
-    Raises:
-        AssertionError: If an invalid basis name is provided.
-
-    """
-    assert basis in (
-        'lg', 'hg', 'diagonal_hg'), "Known 'basis_name' are 'lg', 'hg', 'diagonal_hg'. Got %s." % basis
-
-    if basis == 'lg':
-        basis = np.array([lg(x, y, int(np.minimum(k, order-k)), 2*k - order, w0)
-                          for k in range(order+1)])
-    elif basis == 'hg':
-        basis = np.array([hg(x, y, order-k, k, w0) for k in range(order+1)])
-    elif basis == 'diagonal_hg':
-        basis = np.array([diagonal_hg(x, y, order-k, k, w0)
-                         for k in range(order+1)])
-
-    return basis
 
 
 def lens(x, y, fx, fy, lamb):

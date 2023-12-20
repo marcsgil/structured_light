@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-import structures
+from structured_light import structures
 
 
 class TestStructures(unittest.TestCase):
@@ -44,11 +44,6 @@ class TestStructures(unittest.TestCase):
     def test_b(self):
         result = structures.b(self.m, self.n, self.k)
         self.assertIsInstance(result, float)
-
-    def test_fixed_order_basis(self):
-        result = structures.fixed_order_basis(
-            self.x, self.y, self.w0, self.order, self.basis)
-        self.assertEqual(result.shape, (self.order+1, self.x.shape[0]))
 
     def test_lens(self):
         result = structures.lens(self.x, self.y, self.fx, self.fy, self.lamb)
